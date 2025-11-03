@@ -1,10 +1,10 @@
 import bcrypt from 'bcryptjs';
-import User from '../models/Usermodel.js';
+import User from '../models/User.js';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 dotenv.config();
 
-const secretkey=process.env.jwtsecret;
+const secretkey=process.env.JWT_SECRET;
 
 export const login=async(req,res)=>
 {
@@ -14,14 +14,14 @@ export const login=async(req,res)=>
     try{
     if(!user)
     {
-        return res.status(400).json({error:"No User Found"});
+        return res.status(401).json({error:"No User Found"});
     }
     
     const passwordmatch = await bcrypt.compare(password,user.password);
 
         if(!passwordmatch)
         {
-            return res.status(400).json({ error: "Invalid username or password" });
+            return res.status(401).json({ error: "Invalid username or password" });
         }
         const payload={
             id:user._id,
@@ -39,20 +39,17 @@ export const login=async(req,res)=>
 export const signup=async(req,res)=>
 {
     const {username,password}=req.body;
-    
     const saltround=10;
-
     const hashedpassword= await bcrypt.hash(password,saltround);
     
-
     try
     {
         await User.create({username:username,password:hashedpassword});
-        res.status(200).json({message:'Successfully Created'});
+        res.status(201).json({message:'Successfully Created'});
         
     }catch(e)
     {
-       res.status(400).json({message:"Failed"},);
+       res.status(400).json({message:"Failed to Create a User",details:e.message},);
     }
 
 }

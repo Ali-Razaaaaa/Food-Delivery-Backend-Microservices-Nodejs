@@ -17,6 +17,7 @@ CategorySchema.virtual('dishes',
 
 CategorySchema.set('toJSON', { virtuals: true });
 CategorySchema.set('toObject', { virtuals: true });
+
 const Category=mongoose.model('Category',CategorySchema);
 
 export default Category;
