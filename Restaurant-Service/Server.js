@@ -6,12 +6,11 @@ import RestaurantRoutes from './restaurantserviceroutes/routes.js';
 dotenv.config();
 connectdb();
 
-const port=process.env.PORT||5000;
+const port=process.env.RESTAURANTSERVICE_PORT||5000;
 const app=express();
 app.use(express.json());
 
 app.use('/api/restaurant',RestaurantRoutes);
-
 
 app.listen(port,()=>
 {

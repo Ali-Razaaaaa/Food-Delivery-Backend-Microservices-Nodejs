@@ -4,14 +4,14 @@ import verifytoken from '../Jwt-Middlware/verifytoken.js';
 
 const router = express.Router();
 
-router.get('/get', verifytoken, getrestaurants); //Get all restaurants
+router.get('/get', verifytoken, getrestaurants); 
 
-router.post('/post', verifytoken, postrestaurant);//Post a new restaurant
+router.post('/post', verifytoken, postrestaurant);
 
-router.post('/:id/categories', verifytoken, postcategory); //post a category inside a restaurant
+router.post('/:id/categories', verifytoken, postcategory); 
 
-router.post('/categories/:id/dishes', verifytoken, upload_dish);//post a dish inside a category
+router.post('/categories/:id/dishes', verifytoken, upload_dish);
 
-router.get('/getrestaurantdetails', verifytoken, getrestaurantdetails);// Get restaurant details, their categories and dishes
+router.get('/getrestaurantdetails', verifytoken, getrestaurantdetails);
 
 export default router;
