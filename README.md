@@ -1,215 +1,236 @@
-<!DOCTYPE html>
-<html lang="en">
+<h1 align="center">🍔 Food Delivery Backend 🚀</h1>
+<h3 align="center">Microservices Architecture with Node.js, Express & MongoDB</h3>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food Delivery Backend (Microservices Architecture)</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
+<p align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&pause=1000&color=F75C7E&center=true&vCenter=true&width=435&lines=Scalable+Microservices+Backend;JWT+Authentication;MongoDB+Database;RESTful+APIs" alt="Typing SVG" />
+</p>
 
-        h1,
-        h3 {
-            text-align: center;
-            color: #333;
-        }
+---
 
-        h1 {
-            margin-top: 20px;
-            font-size: 3rem;
-        }
+## 📋 Overview
 
-        h3 {
-            margin-top: 10px;
-            color: #555;
-        }
+This is the backend of the **Food Delivery Service** built using a **microservices architecture**. The project is designed using **Node.js**, **Express**, **JWT (JSON Web Token)** for authentication, and **MongoDB** for the database. The application is split into multiple microservices, each handling a specific domain (Order, Restaurant, Payment, and User services), communicating with each other independently.
 
-        .badges {
-            text-align: center;
-            margin-top: 20px;
-        }
+---
 
-        .badges img {
-            margin: 10px;
-            border-radius: 10px;
-        }
+## 🛠️ Technologies Used
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 30px;
-        }
+<div align="center">
 
-        .section {
-            margin: 50px 0;
-        }
+![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge&logo=express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![REST API](https://img.shields.io/badge/REST%20API-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
 
-        .section h2 {
-            color: #444;
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
+</div>
 
-        .section p {
-            font-size: 1rem;
-            color: #666;
-        }
+- **Node.js**: JavaScript runtime for building the backend
+- **Express.js**: Web framework for Node.js, used for building RESTful APIs
+- **JWT**: Used for authentication and authorization
+- **MongoDB**: NoSQL database to store data related to orders, users, restaurants, and payments
+- **Microservices Architecture**: The backend is divided into multiple services that are independent and communicate via APIs
 
-        .route-list ul {
-            list-style-type: none;
-            padding: 0;
-        }
+---
 
-        .route-list li {
-            font-size: 1rem;
-            margin-bottom: 10px;
-            padding: 8px;
-            background-color: #eef2f7;
-            border-radius: 5px;
-        }
+## ✨ Features
 
-        footer {
-            text-align: center;
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-            margin-top: 50px;
-        }
+### **🛒 Order Service**
+- ✅ Create and manage orders
+- ✅ Fetch orders based on `orderId` and `userId`
+- ✅ Update order status (e.g., "Completed", "Pending", "Cancelled")
+- ✅ Cancel orders
+  
+### **🍽️ Restaurant Service**
+- ✅ Add new restaurants to the system
+- ✅ Manage restaurant categories and dishes
+- ✅ Fetch restaurant details
 
-        footer a {
-            color: #f5f5f5;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-    </style>
-</head>
+### **👤 User Service**
+- ✅ User signup and login with JWT-based authentication
+- ✅ Secure login and token-based user session management
 
-<body>
-    <div class="container">
-        <h1>Food Delivery Backend (Microservices Architecture)</h1>
-        <h3>A Backend Service for Food Delivery Application</h3>
+### **💳 Payment Service**
+- ✅ Create payments for orders
+- ✅ Retrieve payment status
+- ✅ Process refunds for completed payments
 
-        <div class="badges">
-            <img src="https://img.shields.io/badge/Node.js-v16.0%2B-green?style=flat-square&logo=node.js" alt="Node.js" />
-            <img src="https://img.shields.io/badge/Express.js-000000?style=flat-square&logo=express" alt="Express.js" />
-            <img src="https://img.shields.io/badge/JWT-000000?style=flat-square&logo=JSON%20web%20tokens" alt="JWT" />
-            <img src="https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white" alt="MongoDB" />
-        </div>
+---
 
-        <div class="section">
-            <h2>Overview</h2>
-            <p>
-                This project is a <strong>microservices-based backend</strong> for a <strong>Food Delivery Service</strong>.
-                It utilizes <strong>Node.js</strong>, <strong>Express.js</strong>, <strong>JWT</strong>, and <strong>MongoDB</strong>
-                to implement the following services:
-            </p>
-            <ul>
-                <li><strong>Order Service:</strong> Manages order creation, status, and cancellation.</li>
-                <li><strong>Restaurant Service:</strong> Handles restaurant data, categories, and dishes.</li>
-                <li><strong>User Service:</strong> Manages user authentication (signup, login).</li>
-                <li><strong>Payment Service:</strong> Handles payment creation, payment status, and refunds.</li>
-            </ul>
-            <p>
-                Each service operates independently, using its own database and logic, allowing for easy scaling and
-                maintenance.
-            </p>
-        </div>
+## 🏗️ Microservices Architecture
 
-        <div class="section">
-            <h2>Technologies Used</h2>
-            <ul>
-                <li><strong>Node.js</strong>: JavaScript runtime for building scalable backend services.</li>
-                <li><strong>Express.js</strong>: Web framework for creating RESTful APIs.</li>
-                <li><strong>JWT</strong>: JSON Web Tokens used for authentication and authorization.</li>
-                <li><strong>MongoDB</strong>: NoSQL database to store user, order, restaurant, and payment data.</li>
-                <li><strong>Microservices Architecture</strong>: Independent services for order, user, restaurant, and payment.</li>
-            </ul>
-        </div>
+The application is designed using a **microservices architecture**. Each service (Order, Restaurant, Payment, User) is isolated and manages its own database and logic. This architecture ensures that each service can be deployed and scaled independently.
 
-        <div class="section">
-            <h2>Setup Instructions</h2>
-            <h4>Prerequisites</h4>
-            <ul>
-                <li><strong>Node.js</strong> (v14 or higher)</li>
-                <li><strong>MongoDB</strong> (local or cloud)</li>
-                <li><strong>Environment variables</strong>:
-                    <ul>
-                        <li><code>MONGO_URI</code>: MongoDB connection string.</li>
-                        <li><code>JWT_SECRET</code>: JWT secret key for signing tokens.</li>
-                        <li><code>PORT</code>: Port to run each service on (e.g., <code>3000</code>, <code>3001</code>, etc.).</li>
-                    </ul>
-                </li>
-            </ul>
+<div align="center">
 
-            <h4>Steps to Run the Project</h4>
-            <ol>
-                <li><strong>Clone the repository:</strong>
-                    <pre><code>git clone https://github.com/your-username/food-delivery-backend.git</code></pre>
-                    <pre><code>cd food-delivery-backend</code></pre>
-                </li>
-                <li><strong>Install dependencies</strong> for each service:
-                    <pre><code>cd Order-Service && npm install</code></pre>
-                    <pre><code>cd Restaurant-Service && npm install</code></pre>
-                    <pre><code>cd User-Service && npm install</code></pre>
-                    <pre><code>cd Payment-Service && npm install</code></pre>
-                </li>
-                <li><strong>Create a <code>.env</code> file</strong> in each service with the necessary environment variables.</li>
-                <li><strong>Start each service</strong>:
-                    <pre><code>cd Order-Service && npm start</code></pre>
-                    <pre><code>cd Restaurant-Service && npm start</code></pre>
-                    <pre><code>cd User-Service && npm start</code></pre>
-                    <pre><code>cd Payment-Service && npm start</code></pre>
-                </li>
-            </ol>
-        </div>
+```mermaid
+graph TD
+    A[Client] --> B[Order Service]
+    A --> C[Restaurant Service]
+    A --> D[User Service]
+    A --> E[Payment Service]
+    B --> F[(MongoDB)]
+    C --> G[(MongoDB)]
+    D --> H[(MongoDB)]
+    E --> I[(MongoDB)]
+```
 
-        <div class="section route-list">
-            <h2>API Routes</h2>
+</div>
 
-            <h3><strong>Order Service Routes</strong></h3>
-            <ul>
-                <li><strong>Create Order:</strong> `POST /createorder`</li>
-                <li><strong>Get Order by ID:</strong> `GET /get/:id`</li>
-                <li><strong>Get Orders by User:</strong> `GET /users/:id`</li>
-                <li><strong>Get All Orders:</strong> `GET /allorders`</li>
-                <li><strong>Update Order Status:</strong> `PATCH /orders/:id/status`</li>
-                <li><strong>Cancel Order:</strong> `DELETE /orders/:id`</li>
-            </ul>
+- **Order Service**: Handles the creation, status, and cancellation of orders
+- **Restaurant Service**: Manages restaurants, categories, and dishes
+- **User Service**: Manages user authentication (signup and login) using JWT
+- **Payment Service**: Manages payment creation, status retrieval, and refund functionality
 
-            <h3><strong>Restaurant Service Routes</strong></h3>
-            <ul>
-                <li><strong>Get All Restaurants:</strong> `GET /get`</li>
-                <li><strong>Create Restaurant:</strong> `POST /post`</li>
-                <li><strong>Add Categories to Restaurant:</strong> `POST /:id/categories`</li>
-                <li><strong>Add Dishes to Category:</strong> `POST /categories/:id/dishes`</li>
-                <li><strong>Get Restaurant Details:</strong> `GET /getrestaurantdetails`</li>
-            </ul>
+These services communicate with each other via HTTP API calls, ensuring a **loosely coupled** system where each service operates independently.
 
-            <h3><strong>User Service Routes</strong></h3>
-            <ul>
-                <li><strong>Login:</strong> `POST /login`</li>
-                <li><strong>Signup:</strong> `POST /signup`</li>
-            </ul>
+---
 
-            <h3><strong>Payment Service Routes</strong></h3>
-            <ul>
-                <li><strong>Create Payment:</strong> `POST /payment/createpayment`</li>
-                <li><strong>Get Payment Status:</strong> `GET /payment/status/:paymentId`</li>
-                <li><strong>Refund Payment:</strong> `POST /payment/refund/:paymentId`</li>
-            </ul>
-        </div>
+## 🚀 Setup Instructions
 
-        <footer>
-            <p>&copy; 2023 Ali Raza | All Rights Reserved</p>
-            <p>Find me on <a href="https://github.com/your-username" target="_blank">GitHub</a> | <a href="https://www.linkedin.com/in/ali-raza-42965a237/" target="_blank">LinkedIn</a></p>
-        </footer>
-    </div>
-</body>
+### Prerequisites
 
-</html>
+- Node.js (v14 or later)
+- MongoDB (Local or Cloud)
+- JWT secret and MongoDB URI in `.env` file
+
+### Steps to Run the Project
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/your-username/food-delivery-backend.git
+   cd food-delivery-backend
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Create a `.env` file** in the root directory and add:
+   ```env
+   MONGO_URI=your_mongodb_connection_string
+   JWT_SECRET=your_jwt_secret_key
+   PORT=5000
+   ```
+
+4. **Start the services**:
+   ```bash
+   # Start Order Service
+   cd order-service
+   npm start
+
+   # Start Restaurant Service
+   cd restaurant-service
+   npm start
+
+   # Start User Service
+   cd user-service
+   npm start
+
+   # Start Payment Service
+   cd payment-service
+   npm start
+   ```
+
+5. **Access the API**:
+   - Order Service: `http://localhost:5001`
+   - Restaurant Service: `http://localhost:5002`
+   - User Service: `http://localhost:5003`
+   - Payment Service: `http://localhost:5004`
+
+---
+
+## 📡 API Endpoints
+
+### User Service
+- `POST /api/users/signup` - Register a new user
+- `POST /api/users/login` - Login user
+
+### Order Service
+- `POST /api/orders` - Create new order
+- `GET /api/orders/:orderId` - Get order by ID
+- `PUT /api/orders/:orderId` - Update order status
+- `DELETE /api/orders/:orderId` - Cancel order
+
+### Restaurant Service
+- `POST /api/restaurants` - Add new restaurant
+- `GET /api/restaurants` - Get all restaurants
+- `GET /api/restaurants/:restaurantId` - Get restaurant by ID
+
+### Payment Service
+- `POST /api/payments` - Create payment
+- `GET /api/payments/:paymentId` - Get payment status
+- `POST /api/payments/refund` - Process refund
+
+---
+
+## 📂 Project Structure
+
+```
+food-delivery-backend/
+├── order-service/
+│   ├── models/
+│   ├── routes/
+│   ├── controllers/
+│   └── server.js
+├── restaurant-service/
+│   ├── models/
+│   ├── routes/
+│   ├── controllers/
+│   └── server.js
+├── user-service/
+│   ├── models/
+│   ├── routes/
+│   ├── controllers/
+│   └── server.js
+├── payment-service/
+│   ├── models/
+│   ├── routes/
+│   ├── controllers/
+│   └── server.js
+├── .env
+└── README.md
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📧 Contact
+
+<div align="center">
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/your-profile/)
+[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:your-email@gmail.com)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/your-username)
+[![Portfolio](https://img.shields.io/badge/Portfolio-FF5722?style=for-the-badge&logo=google-chrome&logoColor=white)](https://your-portfolio.com)
+
+</div>
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+<div align="center">
+
+### ⭐ Don't forget to star this repo if you found it helpful!
+
+Made with ❤️ by [Your Name]
+
+</div>
