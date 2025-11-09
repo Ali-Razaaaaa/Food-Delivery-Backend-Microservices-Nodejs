@@ -32,21 +32,49 @@ This is the backend of the **Food Delivery Service** built using a **microservic
 ## Features
 
 ### Order Service
-- Create and manage orders
-- Fetch orders based on orderId and userId
-- Update order status (Completed, Pending, Cancelled)
+- Create orders
+- Get order by ID
+- Get user orders
+- Get all orders
+- Update order status
 - Cancel orders
   
 ### Restaurant Service
-- Add new restaurants to the system
-- Manage restaurant categories and dishes
-- Fetch restaurant details
+- Add restaurants
+- Create categories
+- Upload dishes
+- Get all restaurants
+- Get restaurant details
 
 ### User Service
-- User signup and login with JWT-based authentication
-- Secure login and token-based user session management
+- User signup
+- User login
 
 ### Payment Service
-- Create payments for orders
-- Retrieve payment status
-- Process refunds for completed payments
+- Create payment
+- Get payment status
+- Process refund
+
+---
+
+## Microservices Architecture
+
+The application is designed using a **microservices architecture**. Each service (Order, Restaurant, Payment, User) is isolated and manages its own database and logic. This architecture ensures that each service can be deployed and scaled independently.
+
+- **Order Service**: Handles the creation, status, and cancellation of orders
+- **Restaurant Service**: Manages restaurants, categories, and dishes
+- **User Service**: Manages user authentication (signup and login) using JWT
+- **Payment Service**: Manages payment creation, status retrieval, and refund functionality
+
+These services communicate with each other via HTTP API calls, ensuring a **loosely coupled** system where each service operates independently.
+
+---
+
+<div align="center">
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/your-profile/)
+[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:your-email@gmail.com)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/your-username)
+[![Portfolio](https://img.shields.io/badge/Portfolio-FF5722?style=for-the-badge&logo=google-chrome&logoColor=white)](https://your-portfolio.com)
+
+</div>
